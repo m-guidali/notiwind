@@ -83,9 +83,11 @@ var script$1 = {
 
       this.notifications.push(notification);
 
-      this.timeouts[notification.id] = setTimeout(() => {
-        this.remove(notification.id);
-      }, timeout || DEFAULT_TIMEOUT);
+      if(timeout !== -1) {
+        this.timeouts[notification.id] = setTimeout(() => {
+          this.remove(notification.id);
+        }, timeout || DEFAULT_TIMEOUT);
+      }U
     },
     close(id) {
       this.$emit('close');
