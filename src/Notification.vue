@@ -76,10 +76,12 @@ export default {
       const DEFAULT_TIMEOUT = 3000
 
       this.notifications.push(notification)
-
-      this.timeouts[notification.id] = setTimeout(() => {
-        this.remove(notification.id)
-      }, timeout || DEFAULT_TIMEOUT)
+      
+      if(timeout !== -1) {
+        this.timeouts[notification.id] = setTimeout(() => {
+          this.remove(notification.id)
+        }, timeout || DEFAULT_TIMEOUT)
+      }
     },
     close(id) {
       this.$emit('close')
